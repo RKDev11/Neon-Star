@@ -16,6 +16,7 @@ import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.webkit.ValueCallback;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -30,11 +31,14 @@ import android.webkit.WebChromeClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.onesignal.OneSignal;
+
 
 public class MainActivity extends AppCompatActivity {
     private WebView webView;
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String ONESIGNAL_APP_ID = "fd824f06-7942-4154-ad00-b13887c010d3";
 
     private static final int FILECHOOSER_RESULTCODE = 1;
     private ValueCallback<Uri> mUploadMessage;
@@ -101,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("key_url", url);
                 editor.commit();
-
             }
         };
         webView.setWebViewClient(webViewClient);
@@ -206,6 +209,10 @@ public class MainActivity extends AppCompatActivity {
                 openFileChooser(uploadMsg, acceptType);
             }
         });
+        OneSignal.setLogLevel(OneSignal.LOG_LEVEL.VERBOSE, OneSignal.LOG_LEVEL.NONE);
+
+        OneSignal.initWithContext(this);
+        OneSignal.setAppId(ONESIGNAL_APP_ID);
     }
 
     // return here when file selected from camera or from SD Card
