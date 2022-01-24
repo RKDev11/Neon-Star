@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WebView</string>
     <string name="image_chooser">File Chooser</string>
+    <string name="facebook_app_id">1126588974780422</string>
 </resources>
