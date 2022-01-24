@@ -28,6 +28,7 @@ import java.net.URL;
 
 
 import android.webkit.WebChromeClient;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,7 +57,11 @@ public class MainActivity extends AppCompatActivity {
     public String mCameraPhotoPath;
     public ValueCallback<Uri> mUploadMessage;
     public Uri mCapturedImageURI = null;
-    private String adId;
+    public String adId;
+    public String lineGet = "Gp88Vp::gamblords::ИДЕНТИФИКАТОРКАМПАНИИ::sub2::sub3::sub4::sub5";
+    public String[] lineArray;
+    public String apps_id;
+    public String params;
 
 
     @Override
@@ -64,15 +69,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WebClass webClass = new WebClass();
+        ParsLine parsLine = new ParsLine();
+        ConnectingToGP connectingToGP = new ConnectingToGP();
+
 
         int adb = Settings.Secure.getInt(this.getContentResolver(),
                 Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
 
         webClass.oneSignal(this);
 
-        ConnectingToGP connectingToGP = new ConnectingToGP();
+
+
         AppsFlyerLib.getInstance().init(AF_DEV_KEY, connectingToGP.conversionListener, MainActivity.this);
         AppsFlyerLib.getInstance().start(MainActivity.this);
+
+        apps_id = AppsFlyerLib.getInstance().getAppsFlyerUID(this);
+        Log.i(LOG, "apps_id: " + apps_id);
 
         if (adb == 1) {
             new Thread(new Runnable() {
@@ -80,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         adId = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId();
-                        Log.i(LOG, "Id: " + adId);
+                        Log.i(LOG, "adId: " + adId);
                         webClass.HttpConnect(URL_DEF);
+                        parsLine.ChangeLine(lineGet, adId, apps_id);
 
                         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(URL_DEF).openConnection();
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
@@ -94,8 +107,11 @@ public class MainActivity extends AppCompatActivity {
                         line[0] = url;
                         Log.i(LOG, "line[0]: " + line[0]);
 
-                        id = line[1];
-                        Log.i(LOG, "line[1]: " + line[1]);
+                        String keyLink = line[1];
+                        Log.i(LOG, "keyLink: " + keyLink);
+
+                        id = line[2];
+                        Log.i(LOG, "line[2]: " + line[2]);
 
                         FacebookSdk.fullyInitialize();
                         FacebookSdk.setApplicationId(id);
@@ -150,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     public boolean onShowFileChooser(
                                             WebView webView, ValueCallback<Uri[]> filePathCallback,
-                                            WebChromeClient.FileChooserParams fileChooserParams) {
+                                            FileChooserParams fileChooserParams) {
                                         if (mFilePathCallback != null) {
                                             mFilePathCallback.onReceiveValue(null);
                                         }
