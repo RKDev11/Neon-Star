@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">WebView</string>
+    <string name="app_name">Neon Star</string>
     <string name="image_chooser">File Chooser</string>
-    <string name="facebook_app_id">1126588974780422</string>
+    <string name="ball">Ball</string>
+    <string name="floor">Floor</string>
+    <string name="fon">Fon</string>
+    <string name="hoop">Hoop</string>
+    <string name="rectangle">Rectangle</string>
 </resources>
