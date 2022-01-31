@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
+import java.util.Objects;
 
 
 import android.webkit.WebChromeClient;
@@ -33,18 +35,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.appsflyer.AppsFlyerConversionListener;
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 import com.facebook.applinks.AppLinkData;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
 public class NS extends AppCompatActivity {
-    public WebView webViewNnneoSrta;
+    public  WebView webViewNnneoSrta;
     public static final String ONESIGNAL_APP_ID_NNEO_SRTA = "MWNmYmE0NTAtNzYyNC00OGU0LWE4YmQtMzg2N2RjOWEyMmQ5";
     private static final String URL_DEF_NNEO_SRTA = "aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9SS0RldjExL2ExMGYyZjU3ZWJiZGFhNGQyNTg2MGYzZWMzZjJlOTY5L3Jhdy9OZW9uJTI1MjBTdGFy";
     public static final int FILECHOOSER_RESULTCODE_NNEO_SRTA = 1;
     public static final String AF_DEV_KEY_NNEO_SRTA = "WUU3dVpuY0pDY2hNRnJWdkFicm5KUg==";
-    public static final String LOG_NNEO_SRTA = "MyLog";
     public String linkTrueNnneoSrta;
     public static String BUF_READ_NNEO_SRTA;
     public String[] lineNnneoSrta;
@@ -64,7 +66,7 @@ public class NS extends AppCompatActivity {
     public String fbIdNnneoSrta;
     public static String fbDataNnneoSrta;
     public static Intent intentNnneoSrta;
-
+    public String statusAppsFlyerNnneoSrta = "";
 
 
 
@@ -98,14 +100,11 @@ public class NS extends AppCompatActivity {
 
                         lineNnneoSrta = BUF_READ_NNEO_SRTA.split("\\u007c");
 
-
                         linkOfferNnneoSrta = lineNnneoSrta[0];
 
                         keyLinkNnneoSrta = lineNnneoSrta[1];
 
                         fbIdNnneoSrta = lineNnneoSrta[2];
-
-
 
                         spNnneoSrta = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                         savedLinkNnneoSrta = spNnneoSrta.getString(Decoder11("a2V5X3VybA=="), null);
@@ -123,12 +122,10 @@ public class NS extends AppCompatActivity {
                                             public void onDeferredAppLinkDataFetched(AppLinkData appLinkDataNnneoSrta) {
                                                 if (appLinkDataNnneoSrta == null) {
                                                     appLinkDataNnneoSrta = AppLinkData.createFromActivity(NS.this);
-                                                    Log.i(LOG_NNEO_SRTA, "fbDATA: " + appLinkDataNnneoSrta);
                                                 }
                                                 if (appLinkDataNnneoSrta != null) {
                                                     Uri url = appLinkDataNnneoSrta.getTargetUri();
                                                     dataFbNnneoSrta = url.getQuery();
-                                                    Log.i(LOG_NNEO_SRTA, "fbDATAFB: " + dataFbNnneoSrta);
                                                     fbDataNnneoSrta = parsLineNnneoSrta.ChangeLine(dataFbNnneoSrta);
                                                 } else {
 
@@ -144,10 +141,9 @@ public class NS extends AppCompatActivity {
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Log.i(LOG_NNEO_SRTA, "keyLinkNS: " + keyLinkNnneoSrta);
                                             webClassNnneoSrta.StartWebView(linkOfferNnneoSrta, keyLinkNnneoSrta, webViewNnneoSrta, fbDataNnneoSrta, NS.this);
                                         }
-                                    },7000);
+                                    },5000);
                                 }
 
                                 webViewNnneoSrta.setWebViewClient(new WebViewClient() {
@@ -216,7 +212,6 @@ public class NS extends AppCompatActivity {
                                         return true;
                                     }
 
-                                    // creating image files (Lollipop only)
                                     private File createImageFile() throws IOException {
 
                                         File imageStorageDirNnneoSrta = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), Decoder11("RGlyZWN0b3J5TmFtZUhlcmU="));
@@ -224,7 +219,6 @@ public class NS extends AppCompatActivity {
                                         if (!imageStorageDirNnneoSrta.exists()) {
                                             imageStorageDirNnneoSrta.mkdirs();
                                         }
-                                        // create an image file name
                                         imageStorageDirNnneoSrta = new File(imageStorageDirNnneoSrta + File.separator + Decoder11("SU1HXw==") + String.valueOf(System.currentTimeMillis()) + Decoder11("LmpwZw=="));
                                         return imageStorageDirNnneoSrta;
                                     }
@@ -241,6 +235,8 @@ public class NS extends AppCompatActivity {
             startActivity(intentNnneoSrta);
         }
     }
+
+
 
 
     @Override
@@ -288,7 +284,7 @@ public class NS extends AppCompatActivity {
         }
     }
 
-    public String Decoder11(String decodNnneoSrta) {
+    public static String Decoder11(String decodNnneoSrta) {
         String decodedString11NnneoSrta = new String(Base64.decode(decodNnneoSrta, Base64.DEFAULT));
         return decodedString11NnneoSrta;
     }

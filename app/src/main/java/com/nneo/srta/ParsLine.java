@@ -65,7 +65,6 @@ public class ParsLine extends NS {
                 Decoder11("JnN1YjM9") + sub3NnneoSrta +
                 Decoder11("JnN1YjQ9") + sub4NnneoSrta +
                 Decoder11("JnN1YjU9") + sub5NnneoSrta);
-        Log.i(LOG_NNEO_SRTA, "ChangeLineParams: " + paramsNnneoSrta);
         return paramsNnneoSrta;
     }
 }

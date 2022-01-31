@@ -124,7 +124,6 @@ public class GameActivity extends AppCompatActivity {
                 int[] locationOnScreent = new int[2];
                 ballImageViewNnneoSrta2.getLocationOnScreen(locationOnScreent);
                 y2NnneoSrta = locationOnScreent[1];
-                Log.i("MyLog", "y2: " + locationOnScreent[1]);
                 if(y4NnneoSrta < 200 && y2NnneoSrta < 200 && y3NnneoSrta < 200){
                     startTimeNnneoSrta = 0L;
                     customHandlerNnneoSrta.removeCallbacks(updateTimerThreadNnneoSrta);
@@ -149,7 +148,6 @@ public class GameActivity extends AppCompatActivity {
                 int[] locationOnScreent = new int[2];
                 ballImageViewNnneoSrta3.getLocationOnScreen(locationOnScreent);
                 y3NnneoSrta = locationOnScreent[1];
-                Log.i("MyLog", "y3: " + locationOnScreent[1]);
                 if(y4NnneoSrta < 200 && y2NnneoSrta < 200 && y3NnneoSrta < 200){
                     startTimeNnneoSrta = 0L;
                     customHandlerNnneoSrta.removeCallbacks(updateTimerThreadNnneoSrta);
@@ -176,7 +174,6 @@ public class GameActivity extends AppCompatActivity {
                 int[] locationOnScreent = new int[2];
                 ballImageViewNnneoSrta4.getLocationOnScreen(locationOnScreent);
                 y4NnneoSrta = locationOnScreent[1];
-                Log.i("MyLog", "y4: " + locationOnScreent[1]);
                 if(y4NnneoSrta < 200 && y2NnneoSrta < 200 && y3NnneoSrta < 200){
                     startTimeNnneoSrta = 0L;
                     customHandlerNnneoSrta.removeCallbacks(updateTimerThreadNnneoSrta);
