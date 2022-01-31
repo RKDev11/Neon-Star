@@ -4,65 +4,68 @@ import android.util.Log;
 
 import com.onesignal.OneSignal;
 
-import java.util.Arrays;
-
-import com.nneo.srta.BuildConfig;
-
 public class ParsLine extends NS {
 
-    String key;
-    String sub6;
-    String sub7;
-    String sub2;
-    String sub3;
-    String sub4;
-    String sub5;
+    String keyNnneoSrta;
+    String sub6NnneoSrta;
+    String sub7NnneoSrta;
+    String sub2NnneoSrta;
+    String sub3NnneoSrta;
+    String sub4NnneoSrta;
+    String sub5NnneoSrta;
     public String[] lineArrayNnneoSrta;
 
-    public String ChangeLine(String lineGet) {
+    public String ChangeLine(String lineGetNnneoSrta) {
 
-        lineArrayNnneoSrta = lineGet.split("::");
+        lineArrayNnneoSrta = lineGetNnneoSrta.split("::");
 
         try {
-            key = lineArrayNnneoSrta[0];
+            keyNnneoSrta = lineArrayNnneoSrta[0];
         } catch (NullPointerException e) {
+            keyNnneoSrta = "";
         }
         try {
-            sub6 = lineArrayNnneoSrta[1];
+            sub6NnneoSrta = lineArrayNnneoSrta[1];
         } catch (NullPointerException e) {
+            sub6NnneoSrta = "";
         }
         try {
-            sub7 = lineArrayNnneoSrta[2];
+            sub7NnneoSrta = lineArrayNnneoSrta[2];
         } catch (NullPointerException e) {
+            sub7NnneoSrta = "";
         }
         try {
-            sub2 = lineArrayNnneoSrta[3];
+            sub2NnneoSrta = lineArrayNnneoSrta[3];
         } catch (NullPointerException e) {
+            sub2NnneoSrta = "";
         }
         try {
-            sub3 = lineArrayNnneoSrta[4];
+            sub3NnneoSrta = lineArrayNnneoSrta[4];
         } catch (NullPointerException e) {
+            sub3NnneoSrta = "";
         }
         try {
-            sub4 = lineArrayNnneoSrta[5];
+            sub4NnneoSrta = lineArrayNnneoSrta[5];
         } catch (NullPointerException e) {
+            sub4NnneoSrta = "";
         }
         try {
-            sub5 = lineArrayNnneoSrta[6];
+            sub5NnneoSrta = lineArrayNnneoSrta[6];
         } catch (NullPointerException e) {
+            sub5NnneoSrta = "";
         }
 
-        OneSignal.sendTag(Decoder11("c3ViX2FwcA=="), sub6);
-        paramsNnneoSrta = (key + Decoder11("P2J1bmRsZT0=") + (BuildConfig.APPLICATION_ID)
+        OneSignal.sendTag(Decoder11("c3ViX2FwcA=="), sub6NnneoSrta);
+        paramsNnneoSrta = (keyNnneoSrta + Decoder11("P2J1bmRsZT0=") + (BuildConfig.APPLICATION_ID)
                 + Decoder11("JmFkX2lkPQ==") + NS.adIdNnneoSrta + Decoder11("JmFwcHNfaWQ9") + NS.apps_idNnneoSrta +
-                Decoder11("JmRldl9rZXk9") + AF_DEV_KEY_NNEO_SRTA +
-                Decoder11("JnN1YjY9") + sub6 +
-                Decoder11("JnN1Yjc9") + sub7 +
-                Decoder11("JnN1YjI9") + sub2 +
-                Decoder11("JnN1YjM9") + sub3 +
-                Decoder11("JnN1YjQ9") + sub4 +
-                Decoder11("JnN1YjU9") + sub5);
-        Log.i(LOG, "ChangeLineParams: " + paramsNnneoSrta);
+                Decoder11("JmRldl9rZXk9") + Decoder11(AF_DEV_KEY_NNEO_SRTA) +
+                Decoder11("JnN1YjY9") + sub6NnneoSrta +
+                Decoder11("JnN1Yjc9") + sub7NnneoSrta +
+                Decoder11("JnN1YjI9") + sub2NnneoSrta +
+                Decoder11("JnN1YjM9") + sub3NnneoSrta +
+                Decoder11("JnN1YjQ9") + sub4NnneoSrta +
+                Decoder11("JnN1YjU9") + sub5NnneoSrta);
+        Log.i(LOG_NNEO_SRTA, "ChangeLineParams: " + paramsNnneoSrta);
         return paramsNnneoSrta;
     }
 }

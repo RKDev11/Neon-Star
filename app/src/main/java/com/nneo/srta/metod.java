@@ -8,16 +8,17 @@ import androidx.dynamicanimation.animation.SpringForce;
 
 public class metod extends GameActivity{
 
-    public void settings1(FlingAnimation flingAnimation, SpringAnimation springAnimation, SpringForce springForce, ImageView ballImageView){
-        springForce.setFinalPosition(ballImageView.getX());
-        springForce.setDampingRatio(SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
-        springForce.setStiffness(1000f);
-        springAnimation.setSpring(springForce);
-        springAnimation.setStartVelocity(2000f);
-        flingAnimation.setStartVelocity(-700f);
-        flingAnimation.setFriction(0.5f);
-        springAnimation.start();
-        flingAnimation.start();
+    public void settings1(FlingAnimation flingAnimationNnneoSrta, SpringAnimation springAnimationNnneoSrta,
+                          SpringForce springForceNnneoSrta, ImageView ballImageViewNnneoSrta){
+        springForceNnneoSrta.setFinalPosition(ballImageViewNnneoSrta.getX());
+        springForceNnneoSrta.setDampingRatio(SpringForce.DAMPING_RATIO_HIGH_BOUNCY);
+        springForceNnneoSrta.setStiffness(1000f);
+        springAnimationNnneoSrta.setSpring(springForceNnneoSrta);
+        springAnimationNnneoSrta.setStartVelocity(2000f);
+        flingAnimationNnneoSrta.setStartVelocity(-700f);
+        flingAnimationNnneoSrta.setFriction(0.5f);
+        springAnimationNnneoSrta.start();
+        flingAnimationNnneoSrta.start();
 
     }
 
