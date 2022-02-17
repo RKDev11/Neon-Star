@@ -131,9 +131,7 @@ public class NS extends AppCompatActivity {
 
                                                 }
                                             }
-                                        }
-
-                                );
+                                        });
 
                                 if (savedLinkNnneoSrta != null) {
                                     webClassNnneoSrta.getWeb(webViewNnneoSrta, savedLinkNnneoSrta);
@@ -226,7 +224,6 @@ public class NS extends AppCompatActivity {
                             }
                         });
                     } catch (Exception e) {
-
                         startActivity(intentNnneoSrta);
                     }
                 }
@@ -235,9 +232,6 @@ public class NS extends AppCompatActivity {
             startActivity(intentNnneoSrta);
         }
     }
-
-
-
 
     @Override
     public void onActivityResult(int requestCodeNnneoSrta, int resultCodeNnneoSrta, Intent dataNnneoSrta) {
@@ -255,7 +249,7 @@ public class NS extends AppCompatActivity {
                         result = dataNnneoSrta == null ? mCapturedImageURINnneoSrta : dataNnneoSrta.getData();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), Decoder11("YWN0aXZpdHkgOg==") + e, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), Decoder11("YWN0aXZpdHkgOg==") + e, Toast.LENGTH_LONG).show();
                 }
                 mUploadMessageNnneoSrta.onReceiveValue(result);
                 mUploadMessageNnneoSrta = null;
