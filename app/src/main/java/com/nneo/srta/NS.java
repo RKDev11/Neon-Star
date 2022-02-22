@@ -148,7 +148,7 @@ public class NS extends AppCompatActivity {
                                     @Override
                                     public void onPageStarted(WebView view, String url, Bitmap favicon) {
                                         super.onPageStarted(view, url, favicon);
-                                        if (url.contains(Decoder11("NDA0"))) {
+                                        if (url.contains(Decoder11("Z2FwcHM9NDA0"))) {
                                             Intent intentNnneoSrta = new Intent(NS.this, GameActivity.class);
                                             startActivity(intentNnneoSrta);
                                         }
